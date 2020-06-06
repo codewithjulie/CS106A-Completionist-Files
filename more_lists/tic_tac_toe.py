@@ -44,6 +44,8 @@ def get_player_move(board, player):
         col = int(input(f"Player {player}, enter col: "))
         if not valid_move(board, row, col):
             print("Invalid move, try again")
+        else:
+            break
     return row, col
 
 def valid_move(board, row, col):

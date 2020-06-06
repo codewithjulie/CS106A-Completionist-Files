@@ -1,3 +1,8 @@
+# List qualities
+[1, 2, 3] is not [3, 2, 1]      # Ordered
+['cat', 5, (4, 2), 2.5, {}]     # Can contain any type of data
+
+
 # Swapping elements in a list
 # Can you understand why this is buggy?
 def swap_elements_buggy(elem1, elem2):
@@ -40,10 +45,10 @@ alist[::-1]         #
 # Making a copy
 numlist = [1, 2, 3, 4, 5]
 list2 = numlist[:]
-list2 == numlist            # True
-list2 is numlist            # False
+list2 == numlist            # 
+list2 is numlist            # 
 list3 = numlist.copy()      # This is the same as numlist[:]
-list4 = numlist             # What does this do?
+list4 = numlist             # What is this called?
 
 
 # Using for each loop with lists
@@ -53,11 +58,11 @@ for elem in alist[1::2]:
 
 # To delete use del or remove
 num_list = [50, 30, 40, 60, 90, 80]
-del num_list[1]         # Deletes at index
+del num_list[1]         # 
 >>> num_list            #
 del num_list[1:4]
 >>> num_list            #
-num_list.remove(90)     # Deletes element
+num_list.remove(90)     # 
 
 
 # List functions and review
@@ -68,12 +73,12 @@ alist.sort()            #
 sorted = alist.sort()   # 
 alist.pop()             # 
 alist.pop(2)            # 
-alist.append(5)         # Modifies alist, returns None
-blist = alist + [22]    # Concatenating lists returns new list
-alist.extend[4, 2]      # 
-alist.insert(3, 50)     # Takes two arguments
-alist.remove(50)     
-alist.count(50)
+alist.append(5)         # 
+blist = alist + [22]    # 
+alist.extend([4, 2])    # 
+alist.insert(3, 50)     # 
+alist.remove(50)        # 
+alist.count(50)         #
 
 
 # Passing a list as a parameter/argument
@@ -137,6 +142,11 @@ blist = [list_1] * 3
 >>> blist                           # [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
 list_1[0] = 5                       # 
 >>> alist                           # What will this return?
+
+
+# List qualities
+[1, 2, 3] is not [3, 2, 1]      # Ordered
+['cat', 5, (4, 2), 2.5, {}]     # Can contain any type of data
 
 
 # Nested / 2d lists
