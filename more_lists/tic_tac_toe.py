@@ -2,20 +2,21 @@
 File - 'tic_tac_toe.py'
 ----------------------------
 Milestones:
-1. Create a board (3 x 3 grid)
+1. Create and display a board (3 x 3 grid)
 2. Player takes turns
 3. Where to put it?
-4. Check valid move
+4. Check valid move (any key/ch that is not 0, 1 or 2, needs improvement (will not work on a universal grid)
 5. Place the marker
 6. Determine winner
 7. Determine tie
-. 
+8. Loop to ask the player if they want to play again 
 """
 
 import os
 clear = lambda: os.system('clear')
 
-# Create board (3 x 3 grid)
+
+# Create board (3 x 3 grid) and displays it
 def game_board(length=3):
     grid = []
     for i in range(length):
@@ -23,11 +24,13 @@ def game_board(length=3):
         grid.append(row)
         for j in range(length):
             row.append("_")
+    display_board(grid)
     return grid
 
 
-# Print the board to terminal
+# Helper method to display board terminal
 def display_board(grid):
+    print("You're playing tic tac toe")
     for row in grid:
         print(row)
 
@@ -45,22 +48,22 @@ def change_players(player):
 def get_player_move(board, player):
     valid = False
     while not valid:
-        row = int(input(f"Player {player}, enter row: "))
-        col = int(input(f"Player {player}, enter col: "))
+        row = input(f"Player {player}, enter row: ")
+        col = input(f"Player {player}, enter col: ")
         if not valid_move(board, row, col):
             print("Invalid move, try again")
         else:
             break
-    return row, col
+    return int(row), int(col)
 
 
 # Check if position is within the grid and not marked
 def valid_move(board, row, col):
-    if row < 0 or row > 2 or col < 0 or col > 2:
-        return False
-    if board[row][col] != "_":
-        return False
-    return True
+    if (row == '0' or row == '1' or row == '2') and \
+        (col == '0' or col == '1' or col == '2'):
+        if board[int(row)][int(col)] == "_":
+            return True
+    return False
 
 
 # Mark the board
@@ -73,8 +76,7 @@ def game_over(board):
     return three_in_row_horizontal(board) or \
         three_in_row_vertical(board) or \
             three_in_row_diagonal_up(board) or \
-                three_in_row_diagonal_down(board) or \
-                    tie(board)
+                three_in_row_diagonal_down(board)
 
 
 # Helper method to determine if there is a tie
@@ -83,6 +85,7 @@ def tie(grid):
         for col in row:
             if "_" == col:
                 return False
+    print("It's a tie!")
     return True
 
 
@@ -131,21 +134,37 @@ def three_in_row_diagonal_up(grid):
         return True
     return False
 
-def main():
-    clear()     # Start with a empty terminal
-    board = game_board()
-    display_board(board)
-    player = "X"
-    while not game_over(board):
+
+# Get a position, marks the position, 
+def play_round(board, player):
         row, col = get_player_move(board, player)
         update_position(board, row, col, player)
         clear()
         display_board(board)
-        if tie(board):
-            print("It's a tie!")
         if game_over(board):
             print(f"Player {player} wins!")
-        player = change_players(player)
+        
+
+def ask_play_again():
+    response = input("Would you like to play again? ")
+    if response.lower() == "yes" or response.lower() == "y":
+        return True
+    return False
+
+
+def main():
+    play_again = True
+    while play_again:
+        clear()  # Clears the terminal
+        board = game_board()  # Creates and displays board
+        player = "X"  # Set player to X to start
+
+        while not game_over(board) and not tie(board):
+            play_round(board, player)
+            player = change_players(player)
+        play_again = ask_play_again()
+    print("Thank you for playing, have a nice day!")
+
 
 if __name__ == "__main__":
     main()
