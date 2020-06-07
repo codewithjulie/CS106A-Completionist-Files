@@ -1,6 +1,7 @@
 # List qualities
 [1, 2, 3] is not [3, 2, 1]      # Ordered
-['cat', 5, (4, 2), 2.5, {}]     # Can contain any type of data
+['cat', 5, (4, 2), 2.5, True]   # Can contain any type of data
+[1, 2, 3, 4, 5].append([6])     # Mutable
 
 
 # Swapping elements in a list
@@ -14,7 +15,7 @@ def swap_elements_buggy(elem1, elem2):
 def main():
     my_list = [10, 20, 30]
     swap_elements_buggy(my_list[0], my_list[1])
-    print(my_list)
+    print(my_list)      # [10, 20, 30]
 
 
 # This is not buggy
@@ -26,12 +27,12 @@ def swap_elements_working(alist, index1, index2):
 
     # Shortcut without use of temp:
     # Either side of equal is actually a tuple, parentheses are optional
-    (alist[index1], alist[index2]) = (alist[index2], alist[index1])  
+    (alist[index1], alist[index2]) = (alist[index2], alist[index1])
 
 
 # Slicing lists = list[start:end:step]
 alist = [2, 3, 5, 7, 11, 13, 17]
-alist[2:4]          # 
+alist[2:4]          # Test these in IDLE
 >>> alist           # 
 alist[2:2]          # 
 alist[:8]           # 
@@ -48,26 +49,32 @@ list2 = numlist[:]
 list2 == numlist            # 
 list2 is numlist            # 
 list3 = numlist.copy()      # This is the same as numlist[:]
-list4 = numlist             # What is this called?
+list4 = numlist             # What is this called? Aliasing
 
 
 # Using for each loop with lists
 for elem in alist[1::2]:
-    print(elem)     # 
+    print(elem)
+
+
+# Looping using index and range
+for i in range(1, len(alist), 2):
+    print(alist[i])
 
 
 # To delete use del or remove
-num_list = [50, 30, 40, 60, 90, 80]
-del num_list[1]         # 
->>> num_list            #
+num_list = [50, 30, 40, 60, 90, 90]
+del num_list[1]         
+>>> num_list            # What would return?
 del num_list[1:4]
->>> num_list            #
-num_list.remove(90)     # 
+>>> num_list            # What would return?
+num_list.remove(90)
+>>> num_list            # What would return?
 
 
 # List functions and review
 alist = [6, 3, 12, 4]
-len(alist)              # 
+len(alist)              # Test these out in IDLE 
 alist.reverse()         # 
 alist.sort()            # 
 sorted = alist.sort()   # 
@@ -132,21 +139,16 @@ a[:] is a                           # What will this return?
 list_1 = [1, 2, 3, 4]               
 list_2 = list_1                     # This is called aliasing, can be buggy
 list_1[2] = 50                      
-list_1                              # 
-list_2                              #         
+list_1                              # What will this return?
+list_2                              # What will this return?
 
 list_1 = [1, 2, 3, 4]
 alist = list_1 * 3                   
 blist = [list_1] * 3                 
->>> alist                           # [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
->>> blist                           # [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
+>>> alist                           # What will this return?
+>>> blist                           # What will this return?
 list_1[0] = 5                       # 
 >>> alist                           # What will this return?
-
-
-# List qualities
-[1, 2, 3] is not [3, 2, 1]      # Ordered
-['cat', 5, (4, 2), 2.5, {}]     # Can contain any type of data
 
 
 # Nested / 2d lists
@@ -166,17 +168,15 @@ alist[3] is blist[3]                # What will this return?
 
 # Deep copy
 alist = [1, 2, 3, [4, 5]]
-clist = copy.deepcopy(alist)
+clist = copy.deepcopy(alist)  # To use this, you must import copy
 
 
 # How can we create a 3 x 3 grid?
-# What is wrong with this grid?
 grid = []
 for row in range(3):
     for col in range(3):
         grid.append(None)
-print(grid)
-grid[1][1] = "X"
+print(grid)         # What will this print?
 
 
 # How can we make it print like a 3 x 3 grid?
@@ -186,7 +186,12 @@ for row in range(3):
     for col in range(3):
         new_row.append(None)
     grid.append(new_row)
-print(grid)
+print(grid)         # What will this print?
+
+
+# Printing 3 x 3 grid
+for row in grid:
+    print(row)
 
 
 # What could be wrong with this?
