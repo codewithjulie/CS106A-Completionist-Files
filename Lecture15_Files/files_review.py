@@ -35,6 +35,8 @@ with open('states_us.csv', 'r') as f:  # If no mode is passed, defaults to 'r'
     for line in f:
         line = line.strip()
         line = line.split(',')
+        for i in range(len(line)):
+            line[i] = line[i].strip('"')  # Must reassign line[i], this strips the double quotes
         abrv_states[line[0]] = line[1]
     print(abrv_states)
 
