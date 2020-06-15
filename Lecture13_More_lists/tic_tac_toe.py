@@ -1,5 +1,6 @@
 """
 File - 'tic_tac_toe.py'
+
 ----------------------------
 Milestones:
 1. Create and display a board (3 x 3 grid)
