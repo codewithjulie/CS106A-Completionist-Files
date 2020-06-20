@@ -1,0 +1,59 @@
+{
+	"haunted mansion": {
+        "text":"You are standing at the entrance of the haunted mansion. \nIt is a gloomy and dark day and you are alone. \n Your quest is to save your friend who has been missing for 2 days",
+		"moves": {
+			"enter":"atrium",
+			"run":"escape"
+		}
+	},
+	"atrium" : {
+		"text":"You are really nervous, but you know it was the right thing to find your friend. You are in a huge room with a big long staircase. There is a door that leads to a kitchen.",
+		"moves" : {
+            "up":"hallway",
+            "door":"kitchen",
+            "exit":"haunted mansion"
+		}
+	},
+	"hallway": {
+		"text":"You are now in a hallway and there are three doors. You noticed that the third door is locked.",
+		"moves": {
+            "1":"door 1",
+            "2":"door 2",
+            "3":"door 3",
+            "down":"atrium"
+		}
+	},
+	"kitchen": {
+		"text":"You are standing in the kitchen. It looks like something is cooking on the stove. Smells like rotten eggs.",
+		"moves": {
+			"exit":"atrium"
+		}	
+	},
+	"escape": {
+		"text":"Because you were too afraid, your friend was never seen again. Game over.",
+		"moves":{}
+    },
+	"door 1": {
+		"text":"Nothing is here",
+		"moves": {
+			"exit":"hallway"
+		}	
+    },
+	"door 2": {
+		"text":"Nothing is here",
+		"moves": {
+			"exit":"hallway"
+		}	
+    },
+	"door 3": {
+		"text":"The door is locked, of course your friend is in there. You hear something in the closet.",
+		"moves": {
+            "closet":"closet",
+			"run":"hallway"
+		}	
+    },
+	"closet": {
+		"text":"You find your friend tied up. You rush to untie your friend and you both dash out of the room, down the staircase, and out the front door. \n Congratulations! You are a loyal friend.",
+		"moves": []
+	}
+}
